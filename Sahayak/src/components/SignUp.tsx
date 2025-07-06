@@ -73,7 +73,7 @@ export default function PhoneSignupScreen({ navigation }: any) {
     setLoading(true);
     try {
       console.log("sending otp",phone);
-      const res = await axios.post('https://samsung-hackathon.onrender.com/user/send-otp', { phone });
+      const res = await axios.post('https://sahayak-yy09.onrender.com/user/send-otp', { phone });
 
       if (res.data.success) {
         setStep(2);
@@ -93,7 +93,7 @@ export default function PhoneSignupScreen({ navigation }: any) {
   const verifyOTP = async () => {
     setLoading(true);
     try {
-      const res = await axios.post('https://samsung-hackathon.onrender.com/user/verify-otp', { phone, otp });
+      const res = await axios.post('https://sahayak-yy09.onrender.com/user/verify-otp', { phone, otp });
       if (res.data.success) setStep(3);
       else throw new Error(res.data?.message || 'Invalid OTP');
     } catch (err) {
@@ -116,7 +116,7 @@ export default function PhoneSignupScreen({ navigation }: any) {
         console.warn('FCM token fetch failed', e);
       }
       const payload = { phone, ...formData, location, fcmToken };
-      const res = await axios.post('https://samsung-hackathon.onrender.com/user/signup', payload);
+      const res = await axios.post('https://sahayak-yy09.onrender.com/user/signup', payload);
       // await AsyncStorage.setItem('token', res.data.token);
       navigation.replace('Login');
     } catch (err) {

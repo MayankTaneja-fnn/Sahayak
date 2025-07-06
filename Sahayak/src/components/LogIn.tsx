@@ -30,7 +30,7 @@ export default function PhoneLoginScreen({ navigation }: any) {
         await AsyncStorage.setItem('fcmToken', fcmToken);
         const token = await AsyncStorage.getItem('token');
         if (token) {
-          await axios.post('https://samsung-hackathon.onrender.com/user/updateFcmToken', { fcmToken }, {
+          await axios.post('https://sahayak-yy09.onrender.com/user/updateFcmToken', { fcmToken }, {
             headers: { Authorization: `Bearer ${token}` },
           });
         }
@@ -46,7 +46,7 @@ export default function PhoneLoginScreen({ navigation }: any) {
   const login = async () => {
     setLoading(true);
     try {
-      const res = await axios.post('https://samsung-hackathon.onrender.com/user/login', { phone, password });
+      const res = await axios.post('https://sahayak-yy09.onrender.com/user/login', { phone, password });
       await AsyncStorage.setItem('token', res.data.token);
       await updateFcmTokenAfterLogin();
       navigation.replace('Home');

@@ -179,7 +179,7 @@ const SeekHelp = () => {
       } as any);
     });
     try {
-      await axios.post('https://samsung-hackathon.onrender.com/post/submitIssue', formData, {
+      await axios.post('https://sahayak-yy09.onrender.com/post/submitIssue', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',

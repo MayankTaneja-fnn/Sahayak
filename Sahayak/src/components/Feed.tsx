@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import firestore from '@react-native-firebase/firestore';
 
-const BACKEND_URL = 'https://samsung-hackathon.onrender.com'; // Change to your backend
+const BACKEND_URL = 'https://sahayak-yy09.onrender.com'; // Change to your backend
 
 function getDistanceFromLatLonInKm(lat1:any, lon1:any, lat2:any, lon2:any) {
   // Haversine formula

@@ -14,7 +14,7 @@ const Profile = ({ navigation }: any) => {
       try {
         const token = await AsyncStorage.getItem('token');
         if (!token) throw new Error('User not logged in');
-        const res = await axios.get('https://samsung-hackathon.onrender.com/user/profile', {
+        const res = await axios.get('https://sahayak-yy09.onrender.com/user/profile', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setProfile(res.data);

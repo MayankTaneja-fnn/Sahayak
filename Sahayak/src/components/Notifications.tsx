@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 
-const BACKEND_URL = 'https://samsung-hackathon.onrender.com'; // Change to your backend
+const BACKEND_URL = 'https://sahayak-yy09.onrender.com'; // Change to your backend
 
 type RootStackParamList = {
   Feed: { highlightIssueId: string };
