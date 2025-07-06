@@ -85,6 +85,7 @@ export const handleSubmitIssue = async (req, res) => {
       aiVerified,
       flaggedByAI: false,
     };
+    console.log('Issue Data:', issueData);
 
     // Save to Firestore
     const docRef = await db.collection('posts').add(issueData);
@@ -107,7 +108,13 @@ export const handleSubmitIssue = async (req, res) => {
         }
       });
 
-      if (tokens.length > 0) {
+      // Remove the posting user's token if present (extra safety)
+      const filteredTokens = tokens.filter(token => {
+        const user = usersSnap.docs.find(doc => doc.data().fcmToken === token);
+        return user && user.data().userId !== userId;
+      });
+
+      if (filteredTokens.length > 0) {
         const message = {
           notification: {
             title: '🚨 Nearby Help Needed!',
@@ -116,11 +123,13 @@ export const handleSubmitIssue = async (req, res) => {
         };
 
         const messaging = admin.messaging();
-        await messaging.sendToDevice(tokens, message);
+        await messaging.sendEachForMulticast({
+          tokens: filteredTokens,
+          notification: message.notification,
+        });
 
-
-        // Save notifications to DB
-        for (const token of tokens) {
+        // Save notifications to DB (not for posting user)
+        for (const token of filteredTokens) {
           const userSnap = await db
             .collection('users')
             .where('fcmToken', '==', token)
@@ -128,14 +137,16 @@ export const handleSubmitIssue = async (req, res) => {
 
           if (!userSnap.empty) {
             const userDoc = userSnap.docs[0];
-            await db.collection('notifications').add({
-              userId: userDoc.id,
-              issueId: docRef.id,
-              title: '🚨 Nearby Help Needed!',
-              body: description || 'A new help request was posted near you.',
-              createdAt: new Date(),
-              read: false,
-            });
+            if (userDoc.id !== userId) {
+              await db.collection('notifications').add({
+                userId: userDoc.id,
+                issueId: docRef.id,
+                title: '🚨 Nearby Help Needed!',
+                body: description || 'A new help request was posted near you.',
+                createdAt: new Date(),
+                read: false,
+              });
+            }
           }
         }
       }

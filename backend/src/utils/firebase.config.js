@@ -4,7 +4,7 @@ const serviceAccount = JSON.parse(
   Buffer.from(process.env.FIREBASE_SERVICE_ACCOUNT, "base64").toString("utf-8")
 );
 
-console.log("Service Account:", serviceAccount);
+// console.log("Service Account:", serviceAccount);
 //   );
 // } else {
   // Local development (reads from firebase-admin-creds.js)
