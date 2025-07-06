@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "787765912641",
+    "project_id": "samsung-hackathon-6d0a7",
+    "storage_bucket": "samsung-hackathon-6d0a7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787765912641:android:a33ddf9f3a83aa6818d2c0",
+        "android_client_info": {
+          "package_name": "com.sahayak"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB86Mw1W8gVIMdnXSLmnzP1qlOM0BXQpuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
